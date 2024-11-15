@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Testing</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to CSS -->
+</head>
+<body>
+    <div class="card">
+        <h2>User Information Form</h2>
+        <form id="userForm" action="/submit-form" method="post" onsubmit="return validateForm()">
+            
+            <!-- Name Field -->
+            <label for="username">Name:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <!-- Email Field -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <!-- Phone Number Field -->
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            
+            <!-- Role Dropdown -->
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+                <option value="guest">Guest</option>
+            </select>
+            
+            <!-- Comments Textarea -->
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments" rows="4" placeholder="Enter your comments..."></textarea>
+            
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="/js/script.js"></script> <!-- Link to JavaScript -->
+</body>
+</html>
