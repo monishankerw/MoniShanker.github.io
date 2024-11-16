@@ -1,0 +1,27 @@
+{
+  "tradeLicenceNumber": 12345,
+  "businessName": "XYZ Pvt Ltd",
+  "ownerName": "Jane Doe",
+  "contactNumbers": {
+    "home": "1234567890",
+    "office": "0987654321",
+    "mobile": "1112223333"
+  },
+  "address": {
+    "street": "456, Industrial Area",
+    "city": "Metropolis",
+    "zipCode": "123456"
+  },
+  "products": [
+    {
+      "productId": 1,
+      "productName": "Product A",
+      "price": 100
+    },
+    {
+      "productId": 2,
+      "productName": "Product B",
+      "price": 200
+    }
+  ]
+}
