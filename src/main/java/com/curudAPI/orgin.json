@@ -1,0 +1,41 @@
+{
+  "organizationName": "Tech Solutions",
+  "registrationId": 67890,
+  "departments": [
+    {
+      "departmentName": "Engineering",
+      "employees": [
+        {
+          "employeeId": 101,
+          "employeeName": "John Smith",
+          "skills": ["Java", "Spring Boot", "Kubernetes"]
+        },
+        {
+          "employeeId": 102,
+          "employeeName": "Alice Brown",
+          "skills": ["Python", "Django", "AWS"]
+        }
+      ]
+    },
+    {
+      "departmentName": "Marketing",
+      "employees": [
+        {
+          "employeeId": 201,
+          "employeeName": "Mark Lee",
+          "skills": ["SEO", "Google Ads", "Content Writing"]
+        }
+      ]
+    }
+  ],
+  "policies": {
+    "leavePolicy": {
+      "sickLeave": 12,
+      "casualLeave": 15
+    },
+    "workPolicy": {
+      "remoteWorkAllowed": true,
+      "officeHours": "9AM to 6PM"
+    }
+  }
+}
