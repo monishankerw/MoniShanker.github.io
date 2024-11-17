@@ -1,0 +1,14 @@
+{
+  "name": "Tech Solutions",
+  "id": 67890,
+  "policies": {
+    "leavePolicy": {
+      "sickLeave": 12,
+      "casualLeave": 15
+    },
+    "workPolicy": {
+      "remoteWorkAllowed": true,
+      "officeHours": "9AM to 6PM"
+    }
+  }
+}
