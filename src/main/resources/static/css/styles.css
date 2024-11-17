@@ -145,10 +145,15 @@ ul li {
     flex: 1 1 calc(33.33% - 10px);
     box-sizing: border-box;
     transition: transform 0.3s ease;
+    background: url('https://images.unsplash.com/photo-1518770660439-4636190af475') no-repeat center center;
+    background-size: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Shadow effect */
 }
 
 .project-card:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+
 }
 
 .project-card h4 {
@@ -159,7 +164,11 @@ ul li {
 .project-card p {
     color: #555;
 }
-
+ background: url('https://images.unsplash.com/photo-1518770660439-4636190af475') no-repeat center center;
+    background-size: cover;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Shadow effect */
+    border-radius: 8px;
 /* Contact Form */
 form input, form textarea {
     padding: 10px;
