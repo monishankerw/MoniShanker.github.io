@@ -2,43 +2,138 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Testing</title>
-    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moni Shanker's Portfolio</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="card">
-        <h2>User Information Form</h2>
-        <form id="userForm" action="/submit-form" method="post" onsubmit="return validateForm()">
-            
-            <!-- Name Field -->
-            <label for="username">Name:</label>
-            <input type="text" id="username" name="username" required>
-            
-            <!-- Email Field -->
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <!-- Phone Number Field -->
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required>
-            
-            <!-- Role Dropdown -->
-            <label for="role">Role:</label>
-            <select id="role" name="role" required>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
-                <option value="guest">Guest</option>
-            </select>
-            
-            <!-- Comments Textarea -->
-            <label for="comments">Comments:</label>
-            <textarea id="comments" name="comments" rows="4" placeholder="Enter your comments..."></textarea>
-            
-            <!-- Submit Button -->
-            <button type="submit">Submit</button>
-        </form>
+<!-- Header Section -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <img src="images/moni-shanker.jpg" alt="Moni Shanker" class="profile-image">            <div>
+                <h1>Moni Shanker</h1>
+                <h2>Software Developer</h2>
+                <p>
+                    📱 +91 7982397524 | 📧
+                    <a href="mailto:monishanker122@gmail.com">monishanker122@gmail.com</a>
+                </p>
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/monishanker" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/monishanker" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://leetcode.com/u/monishankerw" target="_blank"><i class="fas fa-code"></i></a>
+                </div>
+            </div>
+        </div>
     </div>
+</header>
 
-    <script src="/js/script.js"></script> <!-- Link to JavaScript -->
+<!-- Main Content -->
+<main>
+    <!-- Profile Summary Section -->
+    <section id="profile-summary" class="section">
+        <div class="container">
+            <h3>Profile Summary</h3>
+            <p>
+                Results-driven API Developer with 3.8 years of experience in designing scalable backend solutions using Spring Boot, Hibernate, JSP, and JSTL. Proven ability to deliver secure systems for Pay10 platforms like POS Machine, Shield Pay10, and Payment Bizz. Skilled in REST API development, JWT security, and MySQL/MongoDB management.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h3>Technical Skills</h3>
+            <ul>
+                <li><b>Languages:</b> Core Java, JavaScript, XML</li>
+                <li><b>Frameworks:</b> Spring Boot, Hibernate/JPA, JSP, JSTL, AngularJS</li>
+                <li><b>Web Technologies:</b> HTML, CSS, JavaScript, AJAX, jQuery</li>
+                <li><b>Databases:</b> MySQL, MongoDB</li>
+                <li><b>Scripting:</b> Linux Shell, DOS Scripting</li>
+                <li><b>CI/CD:</b> CircleCI for automated build and testing</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h3>My Projects</h3>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h4>Pay10PG</h4>
+                    <p>Developed a secure payment gateway API with JWT authentication and fraud management.</p>
+                </div>
+                <div class="project-card">
+                    <h4>Shield Pay10</h4>
+                    <p>Implemented backend systems for fraud detection and risk management using Spring Boot and Hibernate.</p>
+                </div>
+                <div class="project-card">
+                    <h4>POS Machine</h4>
+                    <p>Built scalable backend services for POS machine integration with MySQL and Spring Boot.</p>
+                </div>
+                <div class="project-card">
+                    <h4>Payment Bizz</h4>
+                    <p>Developed secure payment processing systems, ensuring seamless acquirer integration.</p>
+                </div>
+                <div class="project-card">
+                    <h4>MediMate Healthcare</h4>
+                    <p>Created REST APIs with Spring Security and optimized database performance for healthcare platforms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h3>Professional Experience</h3>
+            <div class="experience">
+                <h4>Pay10 (Bhartipay)</h4>
+                <p>Software Developer | March 2023 – Present</p>
+                <ul>
+                    <li>Developed secure Spring Boot-based APIs for payment platforms.</li>
+                    <li>Implemented JWT authentication and fraud risk management.</li>
+                    <li>Collaborated with Agile teams for end-to-end development.</li>
+                </ul>
+            </div>
+            <div class="experience">
+                <h4>Quick Tecnocart</h4>
+                <p>Java Developer | Nov 2020 – Jan 2023</p>
+                <ul>
+                    <li>Built backend for MediMate healthcare system with secure REST APIs.</li>
+                    <li>Optimized MySQL database operations for scalability.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h3>Contact Me</h3>
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- Footer Section -->
+<footer>
+    <div class="container">
+        <p>© 2024 Moni Shanker | All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script src="/js/script.js"></script>
 </body>
 </html>

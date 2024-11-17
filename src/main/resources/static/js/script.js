@@ -1,28 +1,40 @@
-function validateForm(): boolean {
-    const username = (<HTMLInputElement>document.getElementById('username')).value;
-    const email = (<HTMLInputElement>document.getElementById('email')).value;
-    const phone = (<HTMLInputElement>document.getElementById('phone')).value;
+document.addEventListener("DOMContentLoaded", () => {
+  // Fetch data from local API (Spring Boot backend)
+  fetch("http://localhost:8080/projects")
+    .then(response => response.json())
+    .then(data => {
+      console.log("Fetched local project data: ", data);
+      const projectSection = document.querySelector("#projects");
+      if (!projectSection) {
+        console.error("No #projects section found in the HTML.");
+        return;
+      }
+      data.forEach(project => {
+        const projectDiv = document.createElement("div");
+        projectDiv.classList.add("project");
+        projectDiv.innerHTML = `<h4>${project.name}</h4><p>${project.description}</p>`;
+        projectSection.appendChild(projectDiv);
+      });
+    })
+    .catch(error => console.error("Error fetching project data from local API: ", error));
 
-    if (!username || !email || !phone) {
-        alert('Please fill out all required fields.');
-        return false;
-    }
-
-    return true;
-}
-
-document.getElementById('userForm')?.addEventListener('mousemove', (e: MouseEvent) => {
-    const card = document.querySelector('.card') as HTMLElement;
-    const { offsetWidth: width, offsetHeight: height } = card;
-    const { offsetX: x, offsetY: y } = e;
-
-    const rotateX = ((y / height) - 0.5) * 10;
-    const rotateY = ((x / width) - 0.5) * -10;
-
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-});
-
-document.getElementById('userForm')?.addEventListener('mouseleave', () => {
-    const card = document.querySelector('.card') as HTMLElement;
-    card.style.transform = 'rotateX(0) rotateY(0)';
+  // Fetch data from external API (example)
+  fetch("https://api.example.com/projects")
+    .then(response => response.json())
+    .then(data => {
+      console.log("Fetched external project data: ", data);
+      // Assuming we want to populate a different section with external data
+      const externalSection = document.querySelector("#external-projects");
+      if (!externalSection) {
+        console.warn("No #external-projects section found in the HTML.");
+        return;
+      }
+      data.forEach(project => {
+        const externalDiv = document.createElement("div");
+        externalDiv.classList.add("external-project");
+        externalDiv.innerHTML = `<h4>${project.name}</h4><p>${project.description}</p>`;
+        externalSection.appendChild(externalDiv);
+      });
+    })
+    .catch(error => console.error("Error fetching project data from external API: ", error));
 });
