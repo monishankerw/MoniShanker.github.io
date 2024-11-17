@@ -1,90 +1,206 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  color: #333;
-  background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    color: #333;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header */
 header {
-  background: #0078D7;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
+    background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 40px;
+    text-align: left;
 }
 
-header .links a {
-  color: #fff;
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: bold;
+header .container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-header .links a:hover {
-  text-decoration: underline;
+header .header-content {
+    text-align: left;
+    margin-right: 30px;
 }
 
-/* Main Content */
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-left: 30px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    font-weight: bold;
+}
+
+header h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+header p {
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+header .social-links {
+    margin-top: 10px;
+}
+
+header .social-links .social-icon {
+    color: #fff;
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+header .social-links .social-icon:hover {
+    color: #0078D7;
+}
+
+/* Main Section */
 main {
-  padding: 20px;
+    padding: 40px;
+    background-color: #f9f9f9;
+}
+
+/* Section Style */
+.section {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 h3 {
-  color: #0078D7;
-  margin-bottom: 10px;
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #333;
 }
 
-section {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Toggle Button */
+.toggle-btn {
+    background-color: #0078D7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+.toggle-btn:hover {
+    background-color: #005a8d;
+}
+
+/* Toggle Content */
+.toggle-content {
+    display: none;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
 }
 
 ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 ul li {
-  margin-bottom: 5px;
+    padding: 5px;
 }
 
-/* Projects Styling */
-#projects, #external-projects {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+/* Project Cards */
+.project-cards {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-#projects .project, #external-projects .external-project {
-  background: #f1f1f1;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
-  flex: 1 1 calc(33.33% - 10px);
-  box-sizing: border-box;
+.project-card {
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    flex: 1 1 calc(33.33% - 10px);
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 10px;
-  background: #0078D7;
-  color: #fff;
-  position: relative;
-  bottom: 0;
-  width: 100%;
+.project-card:hover {
+    transform: scale(1.05);
 }
-.profile-image {
-    width: 220px;
-    height: 360px;
-    border-radius: 50%;
-    margin: 10px auto;
-    display: block;
-    object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+.project-card h4 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
 }
+
+.project-card p {
+    color: #555;
+}
+
+/* Contact Form */
+form input, form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+}
+
+form button {
+    padding: 10px;
+    background: #0078D7;
+    color: white
+
+    /* Project Cards Section */
+    .project-cards {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .project-card {
+        background: #f1f1f1;
+        border: 1px solid #ddd;
+        padding: 20px;
+        border-radius: 5px;
+        flex: 1 1 calc(33.33% - 10px);
+        box-sizing: border-box;
+        transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+        transform: scale(1.05);
+    }
+
+    .project-card h4 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .project-card p {
+        color: #555;
+    }

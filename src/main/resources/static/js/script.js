@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("No #projects section found in the HTML.");
         return;
       }
+      // Dynamically create project cards
       data.forEach(project => {
         const projectDiv = document.createElement("div");
         projectDiv.classList.add("project");
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.warn("No #external-projects section found in the HTML.");
         return;
       }
+      // Dynamically create external project cards
       data.forEach(project => {
         const externalDiv = document.createElement("div");
         externalDiv.classList.add("external-project");
@@ -38,3 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(error => console.error("Error fetching project data from external API: ", error));
 });
+
+// Toggle visibility of content
+
+}
