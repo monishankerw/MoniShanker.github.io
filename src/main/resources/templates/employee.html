@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Card Adder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">Add Employee Cards</h1>
+
+    <!-- Form Section -->
+    <form id="employeeForm" class="mb-5">
+        <div class="mb-3">
+            <label for="employeeName" class="form-label">Employee Name</label>
+            <input type="text" id="employeeName" class="form-control" placeholder="Enter employee name" required>
+        </div>
+        <div class="mb-3">
+            <label for="employeeId" class="form-label">Employee ID</label>
+            <input type="number" id="employeeId" class="form-control" placeholder="Enter employee ID" required>
+        </div>
+        <div class="mb-3">
+            <label for="employeeSkills" class="form-label">Skills (comma-separated)</label>
+            <input type="text" id="employeeSkills" class="form-control" placeholder="e.g., Java, Spring, Hibernate" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Card</button>
+    </form>
+
+    <!-- Cards Section -->
+    <div id="cardsSection" class="row gy-4">
+        <!-- Dynamic cards will be appended here -->
+    </div>
+</div>
+
+<script>
+    // Handle form submission
+    document.getElementById("employeeForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Get form data
+        const name = document.getElementById("employeeName").value;
+        const id = document.getElementById("employeeId").value;
+        const skills = document.getElementById("employeeSkills").value.split(",").map(skill => skill.trim());
+
+        // Create a card
+        const cardHtml = `
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">${name}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">ID: ${id}</h6>
+                        <p class="card-text">Skills: ${skills.join(", ")}</p>
+                        <button class="btn btn-danger btn-sm delete-card">Delete</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Append the card to the cards section
+        const cardsSection = document.getElementById("cardsSection");
+        cardsSection.insertAdjacentHTML("beforeend", cardHtml);
+
+        // Reset the form
+        document.getElementById("employeeForm").reset();
+
+        // Add delete functionality to the card
+        const deleteButtons = document.querySelectorAll(".delete-card");
+        deleteButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                this.parentElement.parentElement.parentElement.remove();
+            });
+        });
+    });
+</script>
+</body>
+</html>

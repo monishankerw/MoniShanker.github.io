@@ -28,6 +28,7 @@ public class MerchantController {
         log.info("Merchant successfully saved: {}", savedMerchant);
         return ResponseEntity.ok(savedMerchant);
     }
+
     @GetMapping("/merchants")
     public ResponseEntity<List<Merchant>> getAllMerchants() {
         List<Merchant> merchants = merchantService.fetchAllMerchants();
