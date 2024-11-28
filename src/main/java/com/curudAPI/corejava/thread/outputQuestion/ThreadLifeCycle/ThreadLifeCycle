@@ -1,0 +1,81 @@
+
+       Thread Life Cycle
+       https://www.geeksforgeeks.org/lifecycle-and-states-of-a-thread-in-java/
+
+                start()       <-------                                       <-------            <-------      -
+       New State-------->Active state(Runnable()(sleep(),wait(),notify(),notifyAll()))----->Running----->Terminal----->Deadlock()
+
+       1. New State
+       2. Active State(running, runnable)
+       3. waiting/block state
+       4. Timed wating state
+       5.Terminated state
+
+       1. New State
+       ->By default, a Thread will be in a new state
+       -> In this state, code has not yet been run and the execution process is not yet initiated.
+
+       2. Active State
+       ->When a thread invokes the start() method, it moves from the new state to the active state.
+       Two state 1. Running 2. Runnable
+       1. Runnable: A thread, that is ready to run is then moved to the runnable state, it is the duty of the thread scheduler to provide the
+       thread time to run, moving the thread the running state.
+
+       Thread Scheduler: is the java is the component of jvm that determines the execution order of multiple threads on a single process(cpu)
+       It decides the order in which threads should run. This process is called Thread scheduler in java.
+
+       Running:
+       ->When the thread gets the cpu,it moves from the runnable to the running state.
+       Generally,the most common change in the state of the thread is form runnable to running and again back to runnable.
+
+       3. Blocked or waiting:
+       ->When ever a thread is inactive for a span of time (not permanently) then, either the thread is in the blocked state or is in the waiting state.
+
+       4. Terminated
+       ->A thread reaches the termination state because of the following reasons:
+       when a thread has finished its job, then it exists or terminates normally.
+
+       5. Abnormal termination:
+       ->It occurs when some unusual events such as an unhandled exception or segmentation faults.
+       public class Threads extends Thread{
+           @Override
+           public void run() {
+               System.out.println("Running");
+
+           }
+
+           public static void main(String[] args) {
+               Threads threads=new Threads();
+               System.out.println(threads.getState());
+               threads.start();
+               System.out.println(threads.getState());
+               try{
+                   Thread.sleep(5000);
+               } catch (InterruptedException e) {
+                   System.out.println(e);
+
+                   throw new RuntimeException(e);
+               }
+               System.out.println(threads.getState());
+           }
+       }
+       NEW
+       RUNNABLE
+       Running
+       TERMINATED
+
+
+       package com.customerService.thread;
+
+       public class Sleep {
+           public static void main(String[] args) throws InterruptedException {
+               try{
+                   Thread.sleep(5000);
+               }
+               catch (Exception e){
+                   System.out.println(e);
+               }
+               System.out.println("Testing");
+           }
+       }
+       //Testing

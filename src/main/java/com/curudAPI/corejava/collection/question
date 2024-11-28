@@ -1,0 +1,84 @@
+
+Here are some common Java collection interview questions suitable for freshers to candidates with up to 5 years of experience:
+
+Basic Level Questions
+What is a Collection in Java?
+
+Explain the Collection framework in Java.
+What are the main interfaces in the Java Collections Framework?
+What is the difference between Collection and Collections?
+
+How do you use Collections utility class?
+What are the different types of Collections in Java?
+
+Describe List, Set, and Map interfaces.
+What is the difference between ArrayList and LinkedList?
+
+When would you use one over the other?
+What is the difference between HashSet and TreeSet?
+
+What are their advantages and disadvantages?
+Intermediate Level Questions
+How does a HashMap work in Java?
+
+Explain the concept of hashing and how keys are stored in a HashMap.
+What is the difference between HashMap and Hashtable?
+
+Discuss thread safety and synchronization aspects.
+What is the difference between List and Set?
+
+How do these interfaces handle duplicates and ordering?
+Explain the difference between Comparable and Comparator interfaces.
+
+How would you implement sorting using these interfaces?
+What are the differences between fail-fast and fail-safe iterators in Java?
+
+Give examples of collections that use each type of iterator.
+Advanced Level Questions
+What is a ConcurrentHashMap?
+
+How does it differ from a regular HashMap?
+Explain the difference between synchronized and concurrent collections.
+
+Give examples of each type.
+What are weak references in Java?
+
+How do they relate to WeakHashMap?
+Explain the concept of blocking queues.
+
+Describe the usage of BlockingQueue interface and its implementations.
+What are the differences between ArrayList and Vector?
+
+Discuss synchronization and performance.
+Practical/Scenario-Based Questions
+How would you remove duplicates from a List in Java?
+
+Provide different methods to achieve this.
+How can you sort a collection of custom objects?
+
+Implement sorting using Comparable and Comparator.
+How do you synchronize a collection in Java?
+
+Discuss various methods to synchronize a collection.
+How would you iterate over a Map in Java?
+
+Explain different ways to iterate over key-value pairs in a Map.
+What are the best practices for using collections in Java?
+
+Discuss performance considerations, choosing the right collection, etc.
+In-Depth/Conceptual Questions
+What is the internal data structure of a HashMap?
+
+Explain the underlying implementation and how collisions are handled.
+Explain the difference between depth-first search (DFS) and breadth-first search (BFS) in the context of collections.
+
+When would you use each?
+What are the characteristics of a good hash function?
+
+How does it impact the performance of a HashMap?
+Describe the structure and use of a PriorityQueue in Java.
+
+How does it differ from other queues?
+What is the role of identity-based collections in Java?
+
+Explain IdentityHashMap and its use cases.

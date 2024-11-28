@@ -1,0 +1,683 @@
+
+       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>STRING NOTES>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+       ->String is in java which consists of serveral build in method using which we can manipulator string data easily.
+       Two ways created:
+       1. using string literal
+       2. using new keyword.
+
+       String literal:
+              String Constant pool: String objects are store in special memory area known as string Constant pool.
+
+           ->To make java memory more efficient(because no new objects are created if it exists alerady in string constant pool)
+           example: String str="xyz";
+
+           Memory Allotment of String
+           -> Whenever a string object is created as a literal, the object will be created in a string constat pool. The allows jvm to optimeze the initializition of string literal.
+           -> String created using double quotes("") are store inside special area called string literal pool.
+
+           Heap Memory: String objects created using new operator/keyword are stored/placed here.
+
+           --> By new keyword: String s=new String("welcome");
+           explination: In such a case, jvm will create a new string object in normal(non pool) heap memory and the literal "welcome" will be placed in the String constant pool.
+           -> If you want to store this string in the constant pool then you will need to "intern" it.
+           -> String x=str.intern();
+           -> This will be add the string to string Const pool.
+           -> It is preferred to use String literals as it allows jvm to optimize memory.
+           Example 1:
+            class A{
+               main(){
+                   String s="xyz";
+                   syso("String s="+s);
+                   String s1=new String("xyz");
+                   syso("String s1="+s1);
+               }
+            }
+            output: s=xyz,s1=xyz
+
+            Example2:
+            String s1= new String("xyz");
+            String s2=new String("xyz");
+            String s3="xyz";
+            String s4="xyz";
+            Heap: s1->xyz, s2->xyz(2)
+            SCP: xyz(duplicate not allow)
+
+            Interfaces and classes in Strings in Java.
+            CharBuffer
+            ->This class implements the char sequence interface.
+            -> This class is used to allow character buffers to be used in place of charSequence.
+            exp:An example of such usage is the regular expression packages java.util.regex.
+
+            1. Mutable Class: Mutable an object are one whose values keep changing.
+              Setter and Getter both methods which help us to initialized variables and methods that help me to read the variable of value.
+              Exp:
+                 class A{
+                   private int i;
+                   public int GetI(){
+                       return i;
+                   }
+                   public void SetI(){
+                       this.i=i;
+                   }
+                   main(){
+                       A a=new A();
+                       a.SetI(1);
+                       syso(a.GetI());
+                   }
+                 }
+                 2. Immutable class:
+                 -> In java,String objects are immutable, immutable simple means unmodified or unchangeable.
+                 -> Once String object is created its data or state can not be changed but a new string object is created.
+                 Rules:
+                 ->Make class final
+                 ->Make variable final and private.
+                 ->Initialize variable through constructor
+                 ->use only getter and not use setter.
+                 ->Wrapper class,String class,legacy class etc.
+                 -> new object are not formed.
+
+                 Q. Example of how to create immutable.
+                 public class final A{
+                   private final int i;
+                   public int getI(){
+                       return i;
+                   }
+                   A(int i, int j){
+                       this.i=i;
+
+                   }
+                   main(){
+                       A a=new A(12);
+                       syso(a.getI());
+                   }
+                 }
+       Q. Why Java Strings are immutable in nature?
+       ->In Java, String objects are immutable in nature which simple means once the String object is created it state can not be modified.
+       ->Whenever you try to update the value of the object insert of updating the value of that paticular object. java created a new string object.
+       ->String is immutable (once created can not be changes) object . The object created as a string is stored in the constant string pool.
+       -> Every immutable object in java is thread safe.
+
+       Q. Difference between String, StringBuilder and StringBuilder?
+
+       String                             | String Buffer                                 | String Builder
+       1. Immutable                       | mutable                                       |    mutable
+       2. Storage:SCP and Heap            | Heap                                          |    Heap
+       3. Memory: more Memory required    | less memory required                          |    less memory
+       4. slow                            | fast as compared to string                    |.   Fast as compared to StringBufferandstring
+       5. Thread safe and Synchronized    | Thread safe and Synchronized                  | not Thread safe and Synchronized
+
+       class A{
+           main(){
+               StringBuilder  s1=new StringBuilder("Hello");
+               syso(s1);
+               s1.append("world");
+               syso(s1);
+           }
+           StringBuffer s2 =new StringBuilder("Hello");
+           syso(s2);
+           s2.append("world");
+           syso(s2);
+       }
+
+       1. String s=new String("abc");
+       s.concat("def");
+       syso(s);//o/p abc
+       // imutable
+       2. StringBuffer sb=new StringBuffer("abc");
+       sb.append("def");
+       syso(sb);//abcdef
+       //mutable
+
+
+       String Tokenizer : Break String into tokens.
+       class A{
+           main(){
+               String s="Schin";
+               s.concat("Tendulkar");
+               syso(s); o/p Schin
+           }
+       }
+
+       concat() method appends the string at the end will print sachin because String are immutable object.
+
+       class A{
+           main(){
+               String s="Schin";
+             s=  s.concat("Tendulkar");
+               syso(s); o/p Schin Tendulkar
+           }
+       }
+
+       class A{
+           main(){
+
+               String s=new String("Schin");
+               s.concat("Tendulkar");
+               s=s.concat("abc");//Schin Tendulkar
+
+               syso(s);
+           }
+       }// no reference applicable for garbage collector
+       Heap: s->Schin
+       SCP: s->Schin,Tendulkar,abc
+
+
+
+       Q. Difference between .equal() and == ?
+       '=='
+        1. Operator for reference comparison. Compare memory address of string objects. (address Comparison)
+        2. checks if both objects print to the same memory location.
+        3. it is an operator.
+
+        .equals()
+
+        1. Compare values of string.
+        2. Evalutes to the Comparison of values in the object.
+        3. method
+        4. overrided possible
+
+
+        String s1=new String("xyz");
+        String s2=new String("xyz");
+       syso(s1==s2);//false
+       syso(s1.equals(s2));//true
+        Ex:
+       1.  class A{
+           main(){
+               String s1=new String("Hello");
+               String s2=new String("Hello");
+               syso(s1==s2);//Hello
+               syso(s1.equals(s2));//true
+           }
+        }
+
+        2. class A{
+           main(){
+               String s1=new String("Hello");
+               String s2=new String("hello");
+               syso(s1==s2);//false
+               syso(s1.equals(s2));//true
+           }
+        }
+        3. class A{
+           main(){
+               Thread t1=new Thread();
+               Thread t2=new Thread();
+               Thread t3=t1;
+               String s1=new String("Hello");
+               String s2=new String("Hello");
+               syso(t1==t3);//true
+               syso(t1==t2);//false
+               syso(s1==s2);//flase
+               syso(t1.equals(t2));//false
+               syso(s1.equals(s2));//true
+           }
+        }
+
+        4. class A{
+           main(){
+               String s1=new String("Hello");
+               String s2=new String("hello");
+               if(s1==s2)
+               syso("Equal");
+               else
+               syso("Not Equal"); o/p not equal
+           }
+        }
+
+       Inbuild function
+       1. toLowercase(): it returns a string with all chars in toLowercase.
+       2. toUppercase(): it returns a string with all chars in toUppercase.
+
+       class A{
+       main(){
+           String s="moni";
+           syso(s.toLowercase());//moni
+           syso(s.toUppercase());//MONI
+       }
+       }
+       3. trim(): it removes the starting and ending whites Space of the string.
+       class A{
+           main(){
+               String s1=" MoniShanker";
+               syso(s1);
+               syso(s1.trim());
+           }
+       }
+
+       4. split(): Print different line of the word.
+       class A{
+           main(){
+               String s1="Moni Shanker";
+               String[] s2=s1.split(" ");
+               syso(s2[0]);
+               syso(s2[1]);
+           }
+       }//o/p: Moni
+               Shanker
+
+       5. length(): TO find count of the word.
+
+       class A{
+           main(){
+               string s1="I am Java Developer";
+               syso(s1.length());
+               string[] s2=s1.split(" ");
+               syso(s2[0].length());//1
+               syso(s2[1].length());//2
+               syso(s2[2].length());//4
+               syso(s2[3].length());//8
+           }
+       }
+       6. charAt():
+       class A{
+           main(){
+               string s1="ManiShanker";
+               for(int i=0;i<s1.length-1;i++){
+                   syso(s1[i]);
+               }
+           }
+       }
+
+       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Important java String Question for Interview>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+       1. WAP for a Reverse String .
+       public class ReverseString {
+           public static void main(String[] args) {
+               String str="MoniShanker";
+               String rev="";
+               for (int i=str.length()-1;i>=0;i--){
+                   rev=rev+str.charAt(i);
+               }
+               System.out.println(rev);
+           }
+       }
+       2. WAP for a Palindrome Strong
+       public class PalindromeString {
+           public static void main(String[] args) {
+               String str = "madam";
+               String rev = "";
+               for (int i = str.length() - 1; i >= 0; i--) {
+                   rev = rev + str.charAt(i);
+               }
+               if (str.equals(rev)) {
+                   System.out.println("Palindrome String");
+               } else {
+                   System.out.println("Not Palindrome String");
+               }
+           }
+       }
+       3. WAP for a DuplicateCharacter.
+       //Declare the Main Class and Method:
+       public class DuplicateCharacter {
+
+           public static void main(String[] args) {
+
+               //Declare and Initialize the String and Map:
+               String str = "javadeveloper";
+               Map<Character, Integer> map = new HashMap<Character, Integer>();
+              // Convert the String to a Character Array:
+               char[] arr = str.toCharArray();
+             //  Iterate Through the Character Array:
+               for (char value: arr) {
+       //Check if the Character is Alphabetic:
+                   if (Character.isAlphabetic(value)) {
+                    //   Update the Map with Character Counts:
+
+
+                       if (map.containsKey(value)) {
+                           map.put(value, map.get(value) + 1);
+
+                       } else {
+                           map.put(value, 1);
+                       }
+                   }
+               }
+       //Print the Map:
+               System.out.println(map);
+
+           }
+       }
+
+       4. WAP for a DuplicateElement.
+       //Declare the Main Class and Method:
+       public class DuplicateElement {
+           public static void main(String[] args) {
+               //Declare and Initialize the String and Other Variables:
+               String str = "JavaDeveloper";
+               int r = 0;
+               //Convert the String to a Character Array:
+               char[] x = str.toCharArray();
+               //Iterate Through the Character Array to Find Duplicates:
+               for (int i = 0; i < str.length(); i++) {
+                   for (int j = i + 1; j < str.length(); j++) {
+                       if (x[i] == x[j]) {
+                           //Print the Duplicate Characters:
+                           System.out.print(x[j]);
+                        //   Increment the Duplicate Count:
+
+
+                           r++;
+                           break;
+                       }
+                   }
+               }
+           }
+           }
+           5. public class FrequencyOfElements {
+           public static void main(String[] args) {
+               String s="aabcddeff";
+               Map<Character,Integer>x=new HashMap<>();
+               for (int i=0;i<s.length();i++){
+                   char ch=s.charAt(i);
+                   if(x.containsKey(ch)){
+                       x.put(ch,x.get(ch)+1);
+                   }else{
+                       x.put(ch,1);
+                   }
+               }
+               System.out.println(x);
+           }
+       }
+       6.
+       public class OccuranceOfCharacter {
+           public static void main(String[] args) {
+               //Declare and Initialize the String and Character:
+               String str = "aaabaccddee";
+               char ch = 'a';
+
+               //Count the Occurrences of the Character:
+
+               int count = 0;
+               for (int i = 0; i < str.length(); i++) {
+                   if (str.charAt(i) == ch) {
+                       count++;
+                   }
+               }
+
+               System.out.println(count);
+           }
+           }
+       7.
+       public class ValidateBracket {
+           public static void main(String[] args) {
+       //        String s="()[]{}";
+               String s="{([])}";
+               boolean status=validateStringBracket(s);
+               System.out.println(s);
+               System.out.println(status);
+           }
+       }
+
+           private static boolean validateStringBracket(String s) {
+               Stack<Character>stack=new Stack<>();
+               for(int i=0;i<s.length();i++){
+                   char ch=s.charAt(i);
+
+                   if(ch=='}'){
+                       if(stack.peek()=='{'){
+                           stack.pop();
+                       }else{
+                           return false;
+                       }
+
+                   }
+
+
+                   else if(ch==')'){
+                       if(stack.peek()=='('){
+                           stack.pop();
+                       }else{
+                           return false;
+                       }
+                   }
+
+
+                   else if (ch==']') {
+                       if (stack.peek()=='['){
+                           stack.pop();
+                       }else {
+                           return false;
+                       }
+
+                   }
+
+
+                   else {
+                       stack.push(ch);
+                   }
+
+
+               }
+
+               if (stack.size()==0){
+                   return true;
+               }
+               return false;
+           }
+
+       5. public class SortString {
+           public static void main(String[] args) {
+               String s="edcab";
+               System.out.println(sortingString(s));
+           }
+
+           private static String sortingString(String s) {
+               char[] charArray=s.toCharArray();
+               Arrays.sort(charArray);
+               String sortedString=new String(charArray);
+               return sortedString;
+           }
+       }
+       6. public class ReverseWord {
+           public static void main(String[] args) {
+               String[] str="my name is abc".split(" ");
+               reverse(str);
+           }
+
+           private static void reverse(String[] str) {
+               String rev=" ";
+               for (int i=str.length-1;i>=0;i--){
+                   rev=rev+str[i]+" ";
+               }
+               System.out.println("Reverse String::");
+               System.out.println(rev.substring(0,rev.length()-1));
+           }
+       }
+       7. public class CountNumberOfWords {
+           public static void main(String[] args) {
+               String str = "Welcome to java";
+               int count = 1;
+               for (int i = 0; i < str.length() - 1; i++) {
+                   if ((str.charAt(i) == ' ') && (str.charAt(i + 1) != ' ')) {
+                       count++;
+                   }
+               }
+               System.out.println("Number of words: " + count);
+           }
+       }
+       8. public class CountWord {
+           public static void main(String[] args) {
+               String str="Java Developer";
+               int count=0;
+               for(int i=0;i<str.length();i++){
+                   if(str.charAt(i)!=' ')
+                       count++;
+               }
+               System.out.println(count);
+           }
+       }
+       9.
+       public class StringRotation {
+           public static void main(String[] args) {
+               String a="HELLO";
+               String b="LOHEL";
+               if(checkRotation(a,b)){
+                   System.out.println("Given Strings are rotations of each other");
+               } else{
+                   System.out.println("Given Strings are not rotations of each other");
+               }
+           }
+
+           private static boolean checkRotation(String a, String b) {
+               if(a.length()!=b.length())
+                   return false;
+               String temp=a+b;
+               if(temp.indexOf(b)!=-1){
+                   return true;
+               } else {
+                   return false;
+               }
+           }
+       }
+       ->indexOF(): Method returns the position of the first occurrence of the specified character or string in a specified string.
+       ->The toString() method is a method defined in the Object class in Java, which is the root of the class hierarchy. This method is overridden by subclasses to provide a string representation of the object.
+
+       Here's what the toString() method does:
+
+       1. Purpose: The primary purpose of the toString() method is to return a string representation of an object. This string representation should be concise, meaningful, and informative, providing enough information to identify the object's state.
+
+       Return Type: The toString() method returns a String object.
+
+       2. Usage: When you print an object reference using System.out.println() or concatenate it with a string using the + operator, Java automatically calls the toString() method of that object to get its string representation.
+
+       3. Default Implementation: The default implementation of toString() in the Object class returns a string consisting of the class name followed by an "@" symbol and the hexadecimal representation of the object's hash code.
+
+       4. Overriding: It's common for classes to override the toString() method to provide a more meaningful string representation of their instances. This allows developers to customize how objects are represented as strings.
+
+       Ex:
+       public class Person {
+           private String name;
+           private int age;
+
+           public Person(String name, int age) {
+               this.name = name;
+               this.age = age;
+           }
+
+           @Override
+           public String toString() {
+               return "Person{name='" + name + "', age=" + age + "}";
+           }
+
+           public static void main(String[] args) {
+               Person person = new Person("John", 30);
+               System.out.println(person); // This implicitly calls person.toString()
+           }
+       }
+
+       10. public class SortString {
+           public static void main(String[] args) {
+               String str = "manishankar";
+               char[] ch = str.toCharArray();
+
+               // Bubble sort algorithm to sort characters
+               for (int i = 0; i < ch.length - 1; i++) {
+                   for (int j = 0; j < ch.length - i - 1; j++) {
+                       if (ch[j] > ch[j + 1]) {
+                           // Swap characters
+                           char temp = ch[j];
+                           ch[j] = ch[j + 1];
+                           ch[j + 1] = temp;
+                       }
+                   }
+               }
+
+               // Convert sorted character array back to string
+               String sortedStr = new String(ch);
+               System.out.println("Sorted string: " + sortedStr);
+           }
+       }
+
+       The toCharArray() method is a method available in the String class in Java. It converts a string into a character array, where each element of the array corresponds to a character in the string.
+
+       Here's how toCharArray() works:
+
+       Return Type: The toCharArray() method returns an array of characters (char[]).
+
+       Usage: You call toCharArray() on a string object to obtain an array representation of its characters.
+
+       Immutable Strings: Strings in Java are immutable, meaning their contents cannot be changed after they are created. The toCharArray() method provides a way to access the characters of a string in a modifiable format (i.e., an array), allowing you to manipulate individual characters if needed.
+
+       Example:
+
+
+       String str = "Hello";
+       char[] charArray = str.toCharArray(); // Convert string to char array
+       After this code executes, charArray will contain the characters 'H', 'e', 'l', 'l', 'o'.
+
+       Use Cases:
+
+       toCharArray() is commonly used when you need to iterate over the characters of a string or perform operations that are more efficiently done on an array, such as sorting or searching.
+       It can also be useful when you want to manipulate individual characters of a string directly.
+       Performance: Keep in mind that toCharArray() creates a new array with a copy of the characters of the string. Therefore, it has a time complexity of O(n), where n is the length of the string.
+
+       In summary, toCharArray() is a convenient method for converting a string into an array of characters, providing a mutable representation of the string's contents.
+
+       11. public class SwapString {
+           public static void main(String[] args) {
+               String str="manishankar";
+               System.out.println(swapping(str));
+           }
+
+           private static String swapping(String str) {
+               if(str==null || str.isEmpty())
+                   return str;
+               char[] ch=str.toCharArray();
+               for (int i=0;i<ch.length-1;i+=2){
+                   char temp=ch[i];
+                   ch[i]=ch[i+1];
+                   ch[i+1]=temp;
+               }
+               return new String(ch);
+           }
+       }
+
+       The isEmpty() method is a method available in the String class in Java. It checks whether the string contains any characters or is empty.
+
+       Here's how isEmpty() works:
+
+       Return Type: The isEmpty() method returns a boolean value (true or false).
+
+       Usage: You call isEmpty() on a string object to determine if it contains any characters.
+
+       Empty String: A string is considered empty if it has a length of zero (i.e., it contains no characters).
+
+       Example:
+
+
+       String str1 = ""; // Empty string
+       String str2 = "Hello";
+
+       boolean isEmpty1 = str1.isEmpty(); // true
+       boolean isEmpty2 = str2.isEmpty(); // false
+       In this example, isEmpty1 will be true because str1 is an empty string, while isEmpty2 will be false because str2 contains characters.
+
+       Use Cases:
+
+       isEmpty() is commonly used when you need to check if a string is empty before performing certain operations, such as concatenation or processing.
+       Performance: The isEmpty() method has a time complexity of O(1), meaning its execution time is constant regardless of the length of the string.
+
+       In summary, isEmpty() is a useful method for determining whether a string is empty, providing a simple and efficient way to handle cases where a string may or may not contain any characters.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

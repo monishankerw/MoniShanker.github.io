@@ -1,0 +1,14 @@
+Comparable Vs Comparator.
+
+Comparable:
+Comparable is technique used to sorted anyone parameter.
+java.lang.package
+one method - compareTo()
+Drawback not sort multiple parameter same program.
+
+Comparator:
+If you want multiple sorting used comparator.
+java.util package
+Two method
+compare()
+equals()

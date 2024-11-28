@@ -1,0 +1,102 @@
+
+                         Functional Interface
+
+
+        a. A Functional Interface is an interface that contains only one abstract method(Incomplete method).
+        b. It is also known as SAM Interface(Single Abstract Method)
+        c. A Functional Interface can have any number of default and static method.
+        Exam: Runnable, Camparable, ActionListener
+        d. Lambda Expressions can be used and executted by representing the interface with an annotation called @FunctionalInterface.
+        e. @Functional Interface annotation is used to ensure that the functional interface can not more than one abstract method.
+        Ex: 1
+        @FunctionalInterface
+       public interface A {
+           public void test();
+       }
+
+       Ex:2
+       @FunctionalInterface
+       public interface A {
+           public void test();
+           public void test1();
+       }//error
+
+
+### MCQ on Functional Interfaces:
+
+1. **What is a functional interface in Java?**
+   a) An interface with exactly one abstract method.
+   b) An interface with multiple abstract methods.
+   c) An interface with no methods.
+   d) An interface with only static methods.
+   **Answer**: a
+
+2. **Which of the following is NOT true about functional interfaces?**
+   a) They can have multiple default methods.
+   b) They can have multiple static methods.
+   c) They can have more than one abstract method.
+   d) They can be annotated with `@FunctionalInterface`.
+   **Answer**: c
+
+3. **Which of the following is an example of a functional interface?**
+   a) `Comparable`
+   b) `Runnable`
+   c) `ActionListener`
+   d) All of the above
+   **Answer**: d
+
+4. **What happens if a functional interface annotated with `@FunctionalInterface` has more than one abstract method?**
+   a) It compiles successfully.
+   b) A runtime exception occurs.
+   c) A compile-time error is thrown.
+   d) It behaves like a normal interface.
+   **Answer**: c
+
+5. **Which feature in Java is closely associated with functional interfaces?**
+   a) Polymorphism
+   b) Inheritance
+   c) Lambda expressions
+   d) Annotations
+   **Answer**: c
+
+6. **Identify the error in the following functional interface:**
+   ```java
+   @FunctionalInterface
+   public interface Example {
+       void method1();
+       void method2(); // Another abstract method
+   }
+   ```
+   a) No error
+   b) Compile-time error: Too many abstract methods
+   c) Syntax error: Missing implementation
+   d) Runtime error
+   **Answer**: b
+
+7. **Which annotation is used to enforce that an interface is functional?**
+   a) `@Override`
+   b) `@FunctionalInterface`
+   c) `@Functional`
+   d) `@Interface`
+   **Answer**: b
+
+8. **Given the interface `@FunctionalInterface public interface Test { void run(); }`, which of the following correctly implements it using a lambda expression?**
+   a) `Test t = () -> { return 42; };`
+   b) `Test t = (x) -> { System.out.println(x); };`
+   c) `Test t = () -> System.out.println("Running");`
+   d) `Test t = (int x, int y) -> x + y;`
+   **Answer**: c
+
+9. **Can a functional interface extend another interface?**
+   a) Yes, if the parent interface has exactly one abstract method.
+   b) No, functional interfaces cannot extend other interfaces.
+   c) Yes, functional interfaces can extend any interface regardless of its methods.
+   d) Yes, if it does not define any additional abstract methods.
+   **Answer**: d
+
+10. **Which of the following interfaces is a functional interface from Java's standard library?**
+    a) `List`
+    b) `Predicate`
+    c) `Map`
+    d) `Serializable`
+    **Answer**: b

@@ -1,0 +1,27 @@
+16. What is a custom exception and how do you create one?
+
+---> In java , we can create our own exceptions that are derived classes of the exception class.
+----> Creating our own Exception is known as custom exception or user-defined exception.
+-----> Basically java custom exceptions are used to customize the exception accourding to user need.
+
+
+
+public class InvalidAgeException extends Exception{
+    private static Error e;
+    private Message message;
+    public InvalidAgeException(String message){
+        super(message);
+    }
+
+
+    public static void main(String[] args) {
+        try{
+            int age=-5;
+            if(age<0){
+                throw new InvalidAgeException("Age can not be negative!!");
+            }
+        }catch (InvalidAgeException e){
+            System.out.println(e.getMessage());
+        }
+    }
+}

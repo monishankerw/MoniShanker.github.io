@@ -1,0 +1,5 @@
+1. Throws keyword written down in the front of method.
+2. Throws keyword can not written down in the front of variable and class.
+3. Throws keyword, Throws Exception to the calling statement of the method.
+4. Whether Exception happen in method or not surrounding
+   calling statement in try catch become mandatory if throws keyword is used.

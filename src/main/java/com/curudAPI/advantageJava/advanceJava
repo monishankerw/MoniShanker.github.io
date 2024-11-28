@@ -1,0 +1,529 @@
+1. What is JDBC?
+Java Data Base Connectivity.
+-> JDBC is a java api to connect and execute the query with the database.
+->JDBC API used JDBC derives to connect with the database we can use jdbc api to access tabular data stores in any relational database.
+
+->By the help of JDBC API, we can save, update, delete, and fetch data from the database.
+
+   Q. How to connect data base.
+   import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+public class A {
+    public static void main(String[] args) {
+        try {
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/jdbc",
+                    "root",
+                    "12Rose#2323");
+
+            System.out.println("Connection established: " + connection);
+
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to establish connection.", e);
+        }
+    }
+}
+
+CRUD->
+   C->CREATE
+   R->READ
+   U->UPDATE
+   D->DELETE
+
+   executeUpdate()-create,update and delete data in database.
+   executeQuery()-read data from data base.
+
+In JDBC, there are three main methods for executing SQL statements: execute, executeQuery, and executeUpdate. Each method is used for different types of SQL statements and returns different types of results.
+
+execute():
+
+This method can be used to execute any SQL statement, whether it's a DDL (Data Definition Language) statement like CREATE, DROP, or ALTER, or a DML (Data Manipulation Language) statement like INSERT, UPDATE, DELETE, or a DQL (Data Query Language) statement like SELECT.
+It returns a boolean value indicating whether the first result is a ResultSet (true) or an update count or there is no result (false).
+This method is useful when you don't know the type of statement at compile-time or when executing multiple types of statements.
+executeQuery():
+
+This method is specifically used to execute DQL (Data Query Language) statements, such as SELECT.
+It returns a ResultSet object containing the data retrieved by the query.
+This method is used when you expect a result set from the SQL query, such as when retrieving data from a database.
+executeUpdate():
+
+This method is specifically used to execute DML (Data Manipulation Language) statements, such as INSERT, UPDATE, DELETE.
+It returns an int value representing the number of rows affected by the SQL statement.
+This method is used when you perform operations that modify data in the database and you need to know the number of affected rows.
+
+package com.example.demo;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
+public class B {
+    public static void main(String[] args) {
+        try {
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/VarshaPatel",
+                    "root",
+                    "12Rose#2323");
+            Statement statement = connection.createStatement();
+
+            boolean isResultSet = statement.execute("CREATE TABLE maniShanker (id INT, name VARCHAR(50))");
+            System.out.println("DDL Statement executed: " + isResultSet);
+
+            int rowsAffected = statement.executeUpdate("INSERT INTO maniShanker VALUES (1, 'VarshaMani')");
+            System.out.println("DML Statement executed. Rows affected: " + rowsAffected);
+
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM maniShanker");
+            System.out.println("DQL Statement executed.");
+            while (resultSet.next()) {
+                System.out.println("ID: " + resultSet.getInt("id") + ", Name: " + resultSet.getString("name"));
+            }
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+
+   create database abc;
+   use abc;
+
+   create table registration
+   (
+    name varchar(45),
+    city varchar(48),
+    email varchar(128),
+    mobile varchar(10)
+   )
+
+   select * from registration.
+   INSERT INTO registration (name, email, mobile) VALUES ('mike', 'ms@gmail.com', 8767876545);
+
+
+   Q. What are the step to connect to a data base in java?
+   java--->midator--->mysql
+
+
+   -------------------->>>>>>>>>>>SERVLET------------------------------>>>>>>>>>>>>>>>>>------------->>>>>>>>>>>>>>>
+
+   ->Servlet is a java class extends HttpServlet. It is used to develop backend code and helps us to read data from the frontend view and backend bussiness logic.
+
+   Two methods:
+   doget() & dopost()
+
+   Q. How to create servlets?
+   1. By implementing servlet interface.
+   2. By extending Generic servlet(abstract class)
+   3. by extending HttpServlet(class)
+
+   Q. Difference between Doget and dopost?
+   DOGET                                        |            DOPOST
+1. Getting data from data base                  |   1.Submit the data in data base.
+2. Data expose to URL                           |   2. DATA not expose to URL
+3. When you refresh page you will not any
+security pop-up alert                           |  3. When you refresh page you will get  security pop-up alert
+
+4. very less secure                             | 4. secure
+
+
+Create database loginPage;
+use loginPage;
+create table login(
+email varchar(128),
+password varchar(20)
+)
+
+select * from login;
+
+package com.example.demo;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+@WebServlet("/verifyLogin")
+public class LoginServlet extends HttpServlet {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Get the parameters from the request
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        // Set up the database connection
+        String jdbcUrl = "jdbc:mysql://localhost:3306/loginPage";
+        String dbUsername = "root";
+        String dbPassword = "12Rose#2323";
+
+        try (Connection connection = DriverManager.getConnection(jdbcUrl, dbUsername, dbPassword)) {
+            // Prepare SQL statement to check user credentials
+            String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, email);
+                statement.setString(2, password);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        // Authentication successful, redirect to success page
+                        response.sendRedirect("success.html");
+                    } else {
+                        // Authentication failed, redirect back to login page with error message
+                        response.sendRedirect("login.html?error=1");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new ServletException("Database access error", e);
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            background-color: #fff;
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<form action="verifyLogin" method="post">
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" placeholder="Enter your email"><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter your password"><br>
+
+    <input type="submit" value="Login">
+</form>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Success</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    .container {
+        margin-top: 100px;
+    }
+    h1 {
+        color: #007bff;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Login Successful!</h1>
+  <p>Welcome to our website.</p>
+</div>
+</body>
+</html>
+
+Intersevlet Communication:When you called one servlet from another servlet using request Dispacher concept then it id called as Interservlet communication.
+During Interservlet communication exchange data between servlet using request set Attribute and request get attribute.
+However,data store using request.setAttribute is nature.
+
+
+public class FirstServlet extends HttpServlet{
+    public static final long serial version UID=1L;
+    public FirstServlet(){
+        super();
+    }
+
+    protected void doGet() throws ServletException,IOException{
+
+    }
+    protected void doPost() throws ServletException,IOException{
+
+    }
+    String name=request.getParameter("name");
+    request.setAttribute("firstName",name);
+    RequestDispatcher rd=request.getRequestDispacher("secondServlet");
+    rd.forword(request,response);
+}
+
+RequestDispatcher: It receive request from client and send it to any resources like servlets, jsp or HTML file.
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpSession;
+import org.apache.coyote.Request;
+
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+
+@WebServlet("/firstServlet")
+public class FirstServlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String name = (String) request.getAttribute("firstName");
+        System.out.println(name);
+
+        HttpSession session = request.getSession();
+        String sessionVal = (String) session.getAttribute("sessionName");
+        System.out.println(sessionVal);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String name = request.getParameter("firstName");
+        System.out.println(name);
+
+        HttpSession session = request.getSession();
+        String sessionVal = (String) session.getAttribute("sessionName");
+        System.out.println(sessionVal);
+    }
+
+}
+session variable:session Variable are once you store data in that the data can access the application regrdless of request dispacher used or not.
+request variable:The variable data can be exchange between servlet only when request concept is used.
+
+SERVLET LIFE Cycle
+
+create Servlet--->start server--->Tomcat Container--->init()--->service method(doGet(),doPost())--->destroy()--->end
+When first time start Tomcat server its loaded in tomcat container, tomcat container is area logical implementation is we develop to run servlet,once's will tomcat started very first
+method in servlet call as init() and this method run's one after init() called the services method are called servel times(service method doget() and dopost()) then called any number of time depending on bussiness requirement finally destroy() will executed servlet life cycle cames to end.
+package com.example.demo;
+
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+
+@WebServlet("addController")
+public class AddController extends HttpServlet {
+    public AddController() {
+    }
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        System.out.println("init");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("get");    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("post");
+    }
+
+    @Override
+    public void destroy() {
+        System.out.println("destroyed");
+    }
+}
+
+
+JSP: JAKARTA SERVER PAGES
+Inside JSP we can access partial java code.
+Implicit object:session,request,response,out
+JSP tags
+1. Scriptlet Tag(<% %>)
+
+->In jsp tags can not used access specifier.
+->Decleration method not allow.
+->Inside scripted code not write html code.
+->partial java code.
+Implicit object:-> implicit object are like 'out'
+request.setAttribute("msg",10);
+out.println(request.getAttribute)
+response.object
+allows session attribute. etc.
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scriptlet Tags</title>
+</head>
+<body>
+<%
+int x = 10;
+out.println(x);
+%>
+</body>
+</html>
+
+2. Declaration Tag:
+<%!  %>
+-> We can used access specifier,method,decleared variable.
+-> We can not used implicit object.
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Declaration Tag Example</title>
+</head>
+<body>
+    <%!
+        // Declare a global variable
+        private int counter = 0;
+
+        // Declare a global method
+        public void incrementCounter() {
+            counter++;
+        }
+    %>
+
+    <h1>Counter Value: <%= counter %></h1>
+
+    <button onclick="increment()">Increment Counter</button>
+
+    <script>
+        function increment() {
+            <% incrementCounter(); %>
+            document.getElementsByTagName("h1")[0].innerText = "Counter Value: <%= counter %>";
+        }
+    </script>
+</body>
+</html>
+
+3. Expression Tag(<=  >)
+-> can write only one statement of code.
+->can not used end with semicolumn(;)
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Expression Tag Example</title>
+</head>
+<body>
+    <%-- Declare a variable --%>
+    <% int x = 10; %>
+
+    <%-- Print the value of the variable using expression tag --%>
+    <p>The value of x is: <%= x %></p>
+
+    <%-- Perform arithmetic operation and print result --%>
+    <p>The result of 5 + 3 is: <%= 5 + 3 %></p>
+
+    <%-- Accessing request parameter and printing its value --%>
+    <p>Hello, <%= request.getParameter("name") %></p>
+</body>
+</html>
+
+4. Directive Tag(<!@  %>)
+->divided into two types: page and include
+page directive is use to import any packages into the jsp page.
+include directive used to import any file into the page.
+
+/*
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.*, java.io.*" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSP with Directives</title>
+</head>
+<body>
+    <!-- Page Directive Example -->
+    <h2>Page Directive Example</h2>
+    <p>This page directive imports the java.util.* and java.io.* packages.</p>
+
+    <%-- Include Directive Example --%>
+    <h2>Include Directive Example</h2>
+    <p>This include directive includes the content of the header.jsp file:</p>
+
+    <%@ include file="header.jsp" %>
+
+    <p>This is the main content of the JSP page.</p>
+
+    <!-- Include another file -->
+    <%@ include file="footer.jsp" %>
+</body>
+</html>
+*/
+------->>>>>>>>>>>>>>>>>>>>>
+ JSP LIFE CYCLE
+
+                  .jsp                  Request
+         JAVA CODE------->jsp Translator------->jsp Init(),jsp Service(),jsp Destroy()(Servlet)
+                                       <---------
+                                         Response
+
+When java code write in .jsp file with help us to jsp Translator then java code converted into servlet and servlet has three method jspinit(),jspService(),jsp Destroy()
+jspinit() run only one's after Tomcat will started.
+Service() run any number of time depending on bussiness required.
+when Dedtroyed() run it means life cycle of jsp comes to end.
+
+---------------------------------------------------->UNIT TESTING------------------------------------------------------------------------------>
+
+
+
+

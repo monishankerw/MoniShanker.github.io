@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A demonstration of HTML tags on a single page">
+    <title>HTML Tag Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        header, footer {
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        section, article {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to the HTML Tag Demonstration</h1>
+    <nav>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#text-formatting">Text Formatting</a></li>
+            <li><a href="#lists">Lists</a></li>
+            <li><a href="#tables">Tables</a></li>
+            <li><a href="#forms">Forms</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="introduction">
+    <article>
+        <h2>Introduction to HTML</h2>
+        <p>This is a simple web page that uses a variety of <strong>HTML tags</strong>. HTML tags structure the content and provide <em>meaning</em> to web browsers.</p>
+        <p>HTML is the <abbr title="HyperText Markup Language">HTML</abbr> used for creating webpages.</p>
+    </article>
+</section>
+
+<section id="text-formatting">
+    <h2>Text Formatting Tags</h2>
+    <p>This is a <b>bold</b> word, and this is an <i>italicized</i> word.</p>
+    <p>This is a <u>underlined</u> word.</p>
+    <p><mark>This text is highlighted.</mark></p>
+    <p>This is an <strong>important</strong> text, and this is an <em>emphasized</em> text.</p>
+    <p>This text contains <sub>subscript</sub> and <sup>superscript</sup>.</p>
+    <blockquote>This is a blockquote used for quoting large blocks of text.</blockquote>
+    <pre>
+    This is preformatted text.
+    It preserves spacing and newlines.
+    </pre>
+    <hr>
+</section>
+
+<section id="lists">
+    <h2>HTML Lists</h2>
+    <h3>Unordered List</h3>
+    <ul>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+    </ul>
+
+    <h3>Ordered List</h3>
+    <ol>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+    </ol>
+
+    <h3>Description List</h3>
+    <dl>
+        <dt>HTML</dt>
+        <dd>A standard language for creating web pages.</dd>
+        <dt>CSS</dt>
+        <dd>A language for styling HTML documents.</dd>
+    </dl>
+    <hr>
+</section>
+
+<section id="tables">
+    <h2>Table Example</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Country</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>John</td>
+            <td>25</td>
+            <td>USA</td>
+        </tr>
+        <tr>
+            <td>Mary</td>
+            <td>30</td>
+            <td>UK</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+</section>
+
+<section id="forms">
+    <h2>HTML Forms</h2>
+    <form action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age"><br><br>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br><br>
+
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    <hr>
+</section>
+
+<section>
+    <h2>Images, Audio, and Video</h2>
+    <h3>Image</h3>
+    <img src="https://via.placeholder.com/150" alt="Placeholder Image">
+
+    <h3>Audio</h3>
+    <audio controls>
+        <source src="audio-file.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <h3>Video</h3>
+    <video controls width="320">
+        <source src="video-file.mp4" type="video/mp4">
+        Your browser does not support the video element.
+    </video>
+    <hr>
+</section>
+
+<section>
+    <h2>Other Miscellaneous Tags</h2>
+    <details>
+        <summary>Click to see more info</summary>
+        <p>This is a collapsible section of text using the <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> tags.</p>
+    </details>
+
+    <figure>
+        <img src="https://via.placeholder.com/200" alt="Sample Image">
+        <figcaption>This is a caption for the image.</figcaption>
+    </figure>
+
+    <progress value="50" max="100"></progress> Progress 50%
+</section>
+
+<footer>
+    <p>© 2024 HTML Tag Demonstration. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

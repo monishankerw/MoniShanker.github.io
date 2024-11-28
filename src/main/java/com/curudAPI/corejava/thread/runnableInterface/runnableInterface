@@ -1,0 +1,90 @@
+
+       Interface Runnable
+       -> Which Thread will executed how much time can not predicated by programmer as it is decided by the processor depending or it availability.
+
+       CREATING A THREAD USING Runnable Interface
+       1. create a class that implements Runnable.
+       2. Provide a run method in the runnable class.
+       3. Create an instance of the Thread class and pass your Runnable Object to its constructor as a parameter.
+       4. call the Thread object start method.
+
+       package com.customerService.thread;
+
+       public class Thred implements Runnable{
+           @Override
+           public void run() {
+               for(int i=0;i<100;i++){
+                   System.out.println("Task1");
+               }
+           }
+
+           public static void main(String[] args) {
+               Thred thred=new Thred();
+               Thread thread=new Thread(thred);
+               thread.start();
+               for (int i=0;i<1000;i++){
+                   System.out.println("Task2");
+               }
+           }
+       }
+
+       THREAD CREATING BY IMPLEMENTING THE Runnable Interface
+       we create a new class which implements java.lang.Runnable interface and override run() method.
+       Then we instantiate a Thread object and call start() method on this object.
+
+       Thread class and Runnable Interface
+       1. If we extend the Thread class our class can not extend any other class because java does not support multiple inheritance.
+       But if we implement the rRunnable interface our class can still extend other base class.
+       2. We can achieve basic functionality a thread by extending Thread class because it provides same in build method like yield(),interrupt() etc.
+       that are not available in runnable interface.
+       3. Using runnable we goes you an object that can be shared amoung multiple thread.
+
+       Q. Which one is the best approach and why?
+       ->Best way to define a thread is by implementing Runnable interface approach recommended.
+       ->If we use Thread class approach our class will always extend thread class hence we miss inheritance advantage of any oher class.
+       ->But in implementing runnable approach we can inherit oher class as well and we do not miss the inheritance benefits.
+
+
+       t.start() vs t.run()
+       ->t.start() will create a new Thread which is responsible for the execution of run() method but in the case of t.run() a new thread
+       won't be create and run() method will be executed just like a normal method call.
+
+
+       Q. Overloading of run() method is possible or not?
+       Overload run() method is always possible but the Thread class start() method will always invoke the no argument run() method and for the over loaded run() method we have to call it explicitly.
+
+       Q. If we don't override the run method and call the start() method then what will be the output we will get?
+       Ex:
+       class Threads1 extends Thread {
+           main(){
+               Threads1 t1=new Threads1();
+               t.start();
+
+           }
+       }
+       ->If we are override run() method and call the start() method then Thread can run() method will be executed hence we cannot get any output.
+       public class B extends Thread{
+           public void start(){
+               System.out.println("Task2");
+           }
+              public void run() {
+                  System.out.println("Task1");
+              }
+
+              public static void main(String[] args) {
+                  B b=new B();
+                  b.start();
+              }
+          }
+          //output Task2
+       if we override the start() method then our start() method will be executed like a normal method call and new thread won't be created.
+
+       q. After starting a thread if we are trying to restart the thread then what will happen.
+       to get runtime exception saying illagal thread state exception.
+
+       Q. How we can get name of a thread?
+       By using Thread.current Thread().getName() method we can get the name of a thread.
+
+       Q. How we can set name of a thread?
+       By using Thread.currentThread().setName() method we can set name of a thread.
+

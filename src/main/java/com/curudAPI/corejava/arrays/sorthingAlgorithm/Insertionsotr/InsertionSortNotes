@@ -1,0 +1,97 @@
+     Here is a detailed explanation and a step-by-step breakdown of the Insertion Sort algorithm along with the complete code you provided.
+
+     How Insertion Sort Works:
+     Idea: Insertion Sort works by building a sorted portion of the array one element at a time. It picks each element and places it in its correct position relative to the previously sorted elements.
+     Process:
+     Start with the second element (index 1), treating the first element (index 0) as a sorted sublist.
+     Compare the current element with the elements in the sorted sublist.
+     Shift the elements of the sorted sublist to the right to make room for the current element in its correct position.
+     Insert the current element at the right place and continue until the entire array is sorted.
+     Time Complexity: O(n²)
+     Best Case: O(n) (when the array is already sorted).
+     Average and Worst Case: O(n²) (when the array is sorted in reverse order).
+     Insertion Sort Code:
+     java
+     Copy code
+     public class InsertionSort {
+         public static void insertionSort(int[] arr) {
+             int n = arr.length;
+
+             // Traverse through the array starting from the second element
+             for (int i = 1; i < n; i++) {
+                 int key = arr[i];  // The current element to be inserted into the sorted sublist
+                 int j = i - 1;
+
+                 // Move elements of the sorted sublist that are greater than the key to one position ahead of their current position
+                 while (j >= 0 && arr[j] > key) {
+                     arr[j + 1] = arr[j];
+                     j--;
+                 }
+                 // Insert the key into its correct position in the sorted sublist
+                 arr[j + 1] = key;
+             }
+         }
+
+         // Method to print the array
+         public static void printArray(int[] arr) {
+             for (int i = 0; i < arr.length; i++) {
+                 System.out.print(arr[i] + " ");
+             }
+             System.out.println();
+         }
+
+         public static void main(String[] args) {
+             // Example array
+             int[] arr = {12, 11, 13, 5, 6};
+
+             // Print the original array
+             System.out.println("Original Array:");
+             printArray(arr);
+
+             // Perform insertion sort
+             insertionSort(arr);
+
+             // Print the sorted array
+             System.out.println("Sorted Array:");
+             printArray(arr);
+         }
+     }
+     Step-by-Step Explanation:
+     Outer Loop (Traversing the Array):
+     We start from the second element of the array (i = 1), treating the first element as already sorted.
+     Inner Loop (Shifting Elements):
+     The key is the element we want to insert into the sorted portion of the array.
+     The inner loop shifts elements of the sorted sublist to the right until it finds the correct position for the key.
+     Once the correct position is found, the key is inserted.
+     Example Walkthrough:
+     Let's sort the array [12, 11, 13, 5, 6].
+     First Pass (i = 1): The key is 11.
+     Compare 11 with 12 and shift 12 to the right.
+     Insert 11 at index 0.
+     Array after first pass: [11, 12, 13, 5, 6].
+     Second Pass (i = 2): The key is 13.
+     13 is already in the correct position (no shifting required).
+     Array after second pass: [11, 12, 13, 5, 6].
+     Third Pass (i = 3): The key is 5.
+     Compare 5 with 13, 12, and 11, and shift them to the right.
+     Insert 5 at index 0.
+     Array after third pass: [5, 11, 12, 13, 6].
+     Fourth Pass (i = 4): The key is 6.
+     Compare 6 with 13, 12, and 11, and shift them to the right.
+     Insert 6 at index 1.
+     Array after fourth pass: [5, 6, 11, 12, 13].
+     Final Output: After all iterations, the sorted array is [5, 6, 11, 12, 13].
+     Output:
+     javascript
+     Copy code
+     Original Array:
+     12 11 13 5 6
+     Sorted Array:
+     5 6 11 12 13
+     This is the complete implementation of the Insertion Sort algorithm, along with a clear example of how it works.
+
+
+
+
+
+

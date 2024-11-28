@@ -1,0 +1,108 @@
+              2. Lambda Expression
+              -> Lambda Expression is mainly used to implement functional interface.
+              -> Lambda Expression is an anonymous function.
+              -> It is a function without name and does not belongs to any class.
+              -> It reduces the line of java code. but the drawback is it make the code less readable.
+              -> Lambda expression implement the only abstract function and therefore implement functional interface.
+              3. Why are use Lambda expression?
+              Facilitates Functional programming.
+              ->To provided the implementation of the java 8 functional Interface.
+              ->Reduce lines of code.
+              ->Passing behavious into method.
+              4. Write a java Lambda Expression to create Thread.
+              ->The Runnable interface is a functional interface so we can use Lambda Expression to implement Runnable functional interface.
+
+              Ex1.
+              @FunctionalInterface
+              public interface A {
+                  public void test();
+              }
+
+              public class A1 {
+                  public static void main(String[] args) {
+                      A a=()->{
+                          System.out.println(100);
+                          System.out.println(355);
+                      };
+                      a.test();
+                  }
+              }
+
+              Ex2:
+                 @FunctionalInterface
+              public interface B {
+                  public void test(int a,int b);
+              }
+              public class B1 {
+                  public static void main(String[] args) {
+                      B b1=(int a,int b)->{
+                          System.out.println(a);
+                          System.out.println(b);
+
+                      };
+                      b1.test(1,2);
+                  }
+              }
+
+              Ex3:
+              @FunctionalInterface
+              public interface C {
+                  public int multiple(int x,int b);
+              }
+              public class C1 {
+                  public static void main(String[] args) {
+                      C c=(a,b)->a*b;
+                      System.out.println(c.multiple(1,4));
+                  }
+              }
+
+              Ex4:
+              @FunctionalInterface
+              public interface D {
+                  public int add(int a, int b);
+              }
+
+              public class D1 {
+                  public static void main(String[] args) {
+                      D d1=(a,b)->a+b;
+                      System.out.println(d1.add(4,9));
+                  }
+              }
+
+              Ex5:
+              @FunctionalInterface
+              public interface E {
+                  public int add(int a,int b);
+              }
+              public class E1 {
+                  public static void main(String[] args) {
+                      E e1=(int a, int b)->a+b;
+                      System.out.println(e1.add(4,9));
+                  }
+              }
+
+              Ex6:
+              @FunctionalInterface
+              public interface Square {
+                  public int square(int x);
+              }
+              public class Square1 {
+                  public static void main(String[] args) {
+                      Square square=(int a)->a*a;
+                      System.out.println(square.square(4));}
+              }
+
+              Ex7:
+              class Test{
+                  main(){
+                      ArrayList<Integer>a=new ArrayList<Integer>();
+                      a.add(1);
+                       a.add(2);
+                       a.add(3);
+                       a.add(4);
+                       a.forEach((n)->syso(n));
+                       a.forEach((n)->{if(n%2==0)syso(n);});
+
+
+                  }
+              }

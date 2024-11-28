@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        a {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 16px;
+            text-align: center;
+        }
+        a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>UPI Payment Form</h2>
+    <form id="upiForm">
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" value="6.00" readonly>
+
+        <label for="payee">Payee:</label>
+        <input type="text" id="payee" name="payee" value="ROI NET SOLUTION PRIVATE LIMITED" readonly>
+
+        <a id="payButton" href="upi://pay?ver=01&mode=15&am=6.00&cu=INR&pa=bharti.roinet@timecosmos&pn=ROI%20NET%20SOLUTION%20PRIVATE%20LIMITED&mc=4816&tr=BHARTIPAY3507140620195258&tn=QR%20SIT%20testing&mid=BHARTIPAY001&msid=ROIN-5208&mtid=BHARTIPAY001-001">Pay Now</a>
+    </form>
+</div>
+</body>
+</html>

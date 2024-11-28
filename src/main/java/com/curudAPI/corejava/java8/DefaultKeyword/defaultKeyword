@@ -1,0 +1,73 @@
+        4. Default Keyword
+        ->using default keyword we can created complete mmethods inside an interface.
+        Note:A functional interface should consist exactly one incomplete method but can have any number of complete method in it.
+
+        Ex1;
+        @FunctionalInterface
+        public interface A {
+            public void test1(int x);
+            default void test2(){
+                System.out.println(2);
+            }
+            default void test3(){
+                System.out.println(3);
+            }
+        }
+
+
+        public class B implements A{
+            @Override
+            public void test1(int x) {
+                System.out.println(x);
+            }
+
+
+
+            public static void main(String[] args) {
+                B b1=new B();
+                b1.test1(1);
+                b1.test2();
+                b1.test3();
+            }
+        }
+
+        Ex2:
+        @FunctionInterface
+        public interface Test {
+            public void test1(int x);
+            default void test2(){
+                System.out.println(100);
+            }
+            default void test3(){
+                System.out.println(200);
+            }
+        }
+        public class Main {
+            public static void main(String[] args) {
+                Test test=(int x)->{
+                    System.out.println(x);
+                };
+                test.test1(1);
+                test.test2();
+                test.test3();
+            }
+        }
+
+        ->In an Interface  we can add main method.
+        public interface A{
+            int x=10;
+            main(){
+                sout(A.x)
+            }
+        }
+        ->We can develop complete static method in an interface.
+        public interface A{
+            int x=10;
+            main(){
+                sout(A.x);
+                A.test();
+            }
+            public static void test(){
+                sout(100);
+            }
+        }

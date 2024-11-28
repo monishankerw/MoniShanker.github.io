@@ -1,0 +1,10 @@
+  TreeSet
+       -> It's sort the data.
+       ->Contains unique element only it's sort.
+       ->The data in the accessinding order.
+       ->not allow null value.
+       ->not allow duplicate and not maintain insertion order.
+       -> Extends abstract set class.
+       -> TreeSet internally created TreeMap.
+       ->Contains only unique elements.
+       ->StringBuffer class implements the comparable interface.

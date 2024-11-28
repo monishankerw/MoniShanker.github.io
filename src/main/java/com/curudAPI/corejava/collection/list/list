@@ -1,0 +1,480 @@
+ https://media.geeksforgeeks.org/wp-content/uploads/20240305170740/Collections-in-Java-768.webp
+
+       List-ArrayList,LinkedList,vector,stack
+       Index based data structure.
+       allow to store duplicate element
+       List can store any value of null elements.
+       Peformance is low
+                        implement                   extends
+       ArrayList(class)----------->List(Interface)------------>Collection
+
+       3.Difference between Array and ArrayList.
+       Array:
+       1. fixed sized. 2. not inside build method. 3. Contained both primitive datatype as well as object class.
+       4. can be multi-dimensional. 5. part of core java program.
+
+       ArrayList:
+       1. Size dynamics. 2. many build method. 3. Support only object entities. 4. One dimensional 5. Part of Collection framework.
+
+       5. ArrayList:
+       1. It can contains duplicate elements.
+       2. It maintains insertion order.
+       3. Allows Random access of data.
+       4. Internally it is implemented as dynamics arrays.
+       5. Used Wrapper class.
+       6. ArrayList can not used for perimitive type. order
+
+
+       6. Use for retrieving of data in collection.
+       for-each,iterator,listiterator,EnumerationIterator,cursor.
+
+       1. For-each Loop
+       The for-each loop is a simple and readable way to iterate over elements in a list. It does not allow modification of the list during iteration.
+
+
+       List<String> list = Arrays.asList("A", "B", "C", "D");
+       for (String item : list) {
+           System.out.println(item);
+       }
+       2. Iterator
+       The Iterator interface provides methods to iterate over a collection and allows safe removal of elements during iteration.
+
+
+       List<String> list = new ArrayList<>(Arrays.asList("A", "B", "C", "D"));
+       Iterator<String> iterator = list.iterator();
+       while (iterator.hasNext()) {
+           String item = iterator.next();
+           System.out.println(item);
+           // Remove element during iteration
+           // iterator.remove();
+       }
+       3. ListIterator
+       The ListIterator interface extends Iterator and allows bidirectional traversal of the list. It also allows modification of elements.
+
+       java
+       Copy code
+       List<String> list = new ArrayList<>(Arrays.asList("A", "B", "C", "D"));
+       ListIterator<String> listIterator = list.listIterator();
+       while (listIterator.hasNext()) {
+           String item = listIterator.next();
+           System.out.println(item);
+           // Modify element during iteration
+           // listIterator.set("E");
+       }
+       while (listIterator.hasPrevious()) {
+           String item = listIterator.previous();
+           System.out.println(item);
+       }
+       4. Enumeration
+       The Enumeration interface is used with legacy classes like Vector and Hashtable. It's similar to Iterator but does not allow element removal.
+
+       java
+       Copy code
+       Vector<String> vector = new Vector<>(Arrays.asList("A", "B", "C", "D"));
+       Enumeration<String> enumeration = vector.elements();
+       while (enumeration.hasMoreElements()) {
+           String item = enumeration.nextElement();
+           System.out.println(item);
+       }
+       5. Cursor
+       In Java, a cursor typically refers to database cursors used in JDBC for database operations. For list traversal, this is not applicable.
+
+       However, if you are looking at cursors in the context of database operations, here's an example using JDBC:
+
+       java
+       Copy code
+       Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "user", "password");
+       Statement statement = connection.createStatement();
+       ResultSet resultSet = statement.executeQuery("SELECT * FROM mytable");
+
+       while (resultSet.next()) {
+           String data = resultSet.getString("column_name");
+           System.out.println(data);
+       }
+
+       resultSet.close();
+       statement.close();
+       connection.close();
+       Summary
+       For-each Loop: Simple and readable, no modification during iteration.
+       Iterator: Safe removal of elements during iteration.
+       ListIterator: Bidirectional traversal and element modification.
+       Enumeration: Used with legacy classes, no element removal.
+       Cursor: Generally used for database operations, not for lists.
+
+
+       7. Method to sort collection?
+       Collections.sort()
+       -java.util.package
+       -sort in assecending
+
+       Array.sort()
+       -java.util.Arrays.sort()
+       -also used for sorting Comparator and comparable interface.
+
+       8. How to reverse list in collection.
+       Three ways.
+       1. Recursively
+       2. Collections.reverse()
+       3.using list add() and list.removemethods.
+       9. How do you make arraylist as synchronised?
+       Two ways
+       1. Collections.synchronisedList() method
+       2. using copyOneWriteArrayList
+
+       1. WAP to traverse(ot iterate) ArrayList.
+       public class A {
+           public static void main(String[] args) {
+               ArrayList<Integer>a=new ArrayList<>();
+               a.add(3);
+               a.add(17);
+               a.add(6);
+               a.add(9);
+               a.add(7);
+               System.out.println(a);
+           }
+       }//op:[3, 17, 6, 9, 7]
+
+
+       public class A {
+           public static void main(String[] args) {
+               ArrayList<Integer>a=new ArrayList<>();
+               a.add(3);
+               a.add(17);
+               a.add(6);
+               a.add(9);
+               a.add(7);
+
+               for (Integer num:a){
+                   System.out.print(" "+num);
+               }
+           }//o/p  3 17 6 9 7
+
+       }
+
+       public class A {
+           public static void main(String[] args) {
+               ArrayList<Integer> a = new ArrayList<>();
+               for (int i = 0; i <= 5; i++) {
+                   a.add(i);
+                   System.out.println(a);
+               }
+
+               // Removing element at index 3
+               a.remove(3);
+
+               System.out.println(a);
+               for (int i=0;i<a.size();i++){
+                   System.out.println(a.get(i)+" ");
+               }
+           }
+       }//op:[0, 1, 2, 3, 4, 5]
+       [0, 1, 2, 4, 5]
+       0 1 2 4 5
+
+       add(object):used to add an object to the collection
+       size():used to return the number of elements in the collection.
+       remove():remove only one elements.
+
+       4. Given an element write a program check if element(value)
+       exist in elements.
+
+       public class B {
+           public static void main(String[] args) {
+               ArrayList<Integer>a=new ArrayList<>();
+               a.add(1);
+               a.add(4);
+               a.add(2);
+               a.add(3);
+               System.out.println(a);
+              if(a.contains(2)){
+                  System.out.println("Found");
+              } else{
+                  System.out.println("Not found");
+              }
+           }
+       }
+       [1, 4, 2, 3]
+       Found
+       contains(object o);
+       This method returns true if the collection contains the specified elements.
+       5. Reverse An ArrayList
+       public class ReverseElements {
+           public static void main(String[] args) {
+               ArrayList<Integer>a=new ArrayList<>();
+               a.add(4);
+               a.add(3);
+               a.add(1);
+               a.add(2);
+               System.out.println("OriginalList:"+a);
+               Collections.reverse(a);
+               System.out.println("ReverseNumber:"+a);
+           }
+       }
+       OriginalList:[4, 3, 1, 2]
+       ReverseNumber:[2, 1, 3, 4]
+
+       6.
+       public class ComPareElements {
+           public static void main(String[] args) {
+               ArrayList<Integer> a=new ArrayList<>();
+
+               a.add(4);
+               a.add(3);
+               a.add(1);
+               a.add(2);
+               a.add(5);
+               a.add(8);
+               int min= Collections.min(a);
+               int max=Collections.max(a);
+               if(min==max){
+                   System.out.println("All Elements are Equal");
+               } else{
+                   System.out.println("Minimum Elements");
+                   System.out.println("max");
+               }
+           }
+       }Minimum Elements
+       max
+       7. WAP to add elements at the specified index in the list using add(index,elements) method.
+       public class D {
+           public static void main(String[] args) {
+               ArrayList<Integer>a=new ArrayList<>();
+               //add method for integer arraylist
+               a.add(1);
+               a.add(2);
+               // index is zero based
+               a.add(1,3);
+               a.add(2,4);
+               System.out.println(a);
+           }
+       }
+       [1, 3, 4, 2]
+
+       8.
+       public class Student {
+           private String name;
+           private String rollNo;
+
+           public Student(String name, String rollNo) {
+               this.name = name;
+               this.rollNo = rollNo;
+           }
+
+           @Override
+           public String toString() {
+               return "Student{" +
+                       "name='" + name + '\'' +
+                       ", rollNo='" + rollNo + '\'' +
+                       '}';
+           }
+
+           public static void main(String[] args) {
+               ArrayList<Student> a=new ArrayList<>();
+               Student student1=new Student("abc","12");
+               Student student2=new Student("abcd","13");
+               Student student3=new Student("abcde","14");
+               a.add(student1);
+               a.add(student2);
+               a.add(student3);
+               for (Student C:a){
+                   System.out.println(C);
+               }
+
+
+           }
+       }
+
+       9. WAP to sort ArrayList in descending order.
+       public class DescendingOrder {
+           public static void main(String[] args) {
+               ArrayList<String>a=new ArrayList<>();
+               a.add("pqr");
+               a.add("mno");
+               a.add("abc");
+               a.add("str");
+               System.out.println(a);//unsorted
+               Collections.sort(a,Collections.reverseOrder());
+               System.out.println(a);//reverse
+           }
+       }All Elements::
+       [pqr, mno, abc, str]
+       Descending Order::
+       [str, pqr, mno, abc]
+
+       10. WAP to convert List to Array.
+       public class ListToArray {
+           public static void main(String[] args) {
+               ArrayList<String>a=new ArrayList<>();
+               a.add("Apple");
+               a.add("Banana");
+               a.add("Pear");
+               a.add("Mango");
+               String[]str=new String[a.size()];
+               for(int i=0;i<a.size();i++){
+                   str[i]=a.get(i);
+               }
+               for (String s:str){
+                   System.out.println(s);
+               }
+           }
+       }Apple
+       Banana
+       Pear
+       Mango
+
+       11.WAP to convert Array to List.
+       public class ArrayToList {
+           public static void main(String[] args) {
+               String[] str={"Dog","cat","Elephant"};
+               for (String value:str){
+                   System.out.println("All Elements:"+value);
+               }
+               ArrayList arrayList=new ArrayList<>(Arrays.asList(str));
+               System.out.println("List Elements:"+arrayList);
+           }
+       }
+
+
+       All Elements:Dog
+       All Elements:cat
+       All Elements:Elephant
+       List Elements:[Dog, cat, Elephant]
+
+       10. Difference between ArrayList and LinkedList?
+       ArrayList
+       1. ArrayList internally used a dynamic array to store the elements.
+       2. Manipulation with ArrayList is slow.
+       3. ArrayList consumes less memory than linked list.
+       4. An arrayList class can acts as a list only.
+       5. ArrayList better for sorting and accessing data.
+
+       LinkedList
+       1. LinkedList internally used a double LinkedList  to store the elements.
+       2. Manipulation with ArrayList is fast.
+       3. LinkedList consumes more memory than Arraylist.
+       4. An LinkedList class can acts as a list and queue.
+       5. LinkedList better for Manipulation data.
+
+       11. Difference between ArrayList and Vector?
+       ArrayList
+       1. ArrayList gives better Performance.
+       2. non.synchronised.
+       3. non-Thread safe.
+       4. ArrayList can use Iterator for traversing its elements.
+
+       Vector
+       1. poor performance.
+       2. Synchronized.
+       3. Thread safe.
+       4. Vector can use both Enumeration and Iterator for traversing over elements.
+
+       Vector
+       1. The vector can implemets a growable array of objects.
+       2. Vector fall in legacy class.
+       3. java.util package and implement the list interface.
+       4. verctor implements a dynamic array.
+       5. similar to arrayList
+       6. synchronised and thread safe
+       7. maintains insertion order.
+       8. poor performance
+
+       1. Adding and Accessing Elements:
+       import java.util.Vector;
+
+       public class VectorExample {
+           public static void main(String[] args) {
+               // Creating a Vector of Integers
+               Vector<Integer> vector = new Vector<>();
+
+               // Adding elements to the Vector
+               vector.add(10);
+               vector.add(20);
+               vector.add(30);
+
+               // Accessing elements using index
+               System.out.println("Element at index 0: " + vector.get(0));
+               System.out.println("Element at index 1: " + vector.get(1));
+               System.out.println("Element at index 2: " + vector.get(2));
+           }
+       }
+       2. Vector with Initial Capacity:
+       import java.util.Vector;
+
+       public class VectorExample {
+           public static void main(String[] args) {
+               // Creating a Vector with initial capacity of 3
+               Vector<Integer> vector = new Vector<>(3);
+
+               // Adding elements to the Vector
+               vector.add(10);
+               vector.add(20);
+               vector.add(30);
+
+               // Accessing elements using index
+               System.out.println("Element at index 0: " + vector.get(0));
+               System.out.println("Element at index 1: " + vector.get(1));
+               System.out.println("Element at index 2: " + vector.get(2));
+           }
+       }
+       3. Copying Elements from Another Collection:
+       import java.util.Vector;
+       import java.util.ArrayList;
+
+       public class VectorExample {
+           public static void main(String[] args) {
+               // Creating an ArrayList
+               ArrayList<Integer> arrayList = new ArrayList<>();
+               arrayList.add(10);
+               arrayList.add(20);
+               arrayList.add(30);
+
+               // Creating a Vector and copying elements from ArrayList
+               Vector<Integer> vector = new Vector<>(arrayList);
+
+               // Accessing elements using index
+               System.out.println("Element at index 0: " + vector.get(0));
+               System.out.println("Element at index 1: " + vector.get(1));
+               System.out.println("Element at index 2: " + vector.get(2));
+           }
+       }
+
+
+       import java.util.Vector;
+
+       public class VectorExample {
+           public static void main(String[] args) {
+               // Creating a Vector of Strings
+               Vector<String> vector = new Vector<>();
+
+               // Adding elements to the Vector
+               vector.add("Apple");
+               vector.add("Banana");
+               vector.add("Orange");
+
+               // Accessing elements using index
+               System.out.println("Element at index 0: " + vector.get(0));
+               System.out.println("Element at index 1: " + vector.get(1));
+               System.out.println("Element at index 2: " + vector.get(2));
+
+               // Size of the Vector
+               System.out.println("Size of Vector: " + vector.size());
+
+               // Iterating over the Vector
+               System.out.println("Iterating over the Vector:");
+               for (String fruit : vector) {
+                   System.out.println(fruit);
+               }
+
+               // Removing an element
+               vector.remove(1);
+               System.out.println("Vector after removing element at index 1: " + vector);
+
+               // Checking if Vector contains an element
+               System.out.println("Does Vector contain 'Apple'? " + vector.contains("Apple"));
+
+               // Clearing the Vector
+               vector.clear();
+               System.out.println("Vector after clearing: " + vector);
+           }
+       }

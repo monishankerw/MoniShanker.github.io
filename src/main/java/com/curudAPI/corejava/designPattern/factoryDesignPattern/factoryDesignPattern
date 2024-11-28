@@ -1,0 +1,100 @@
+Factory Pattern
+___________________
+1. What is the Factory Design Pattern?
+
+1.The Factory design pattern is a creational pattern that provides an interface for creating objects
+ in a super class,
+ 2. but allows subclasses to alter the type of objects that will be created.
+ 3. It promotes loose coupling by eliminating the need to bind application-specific classes into the code.
+ This pattern delegates the responsibility of initializing an object to a factory class.
+
+When and Why Would You Use It?
+When to Use: Use the Factory pattern when:
+
+The exact type of the object is not known until runtime.
+The creation process is complex and should be centralized in a single place.
+You want to provide a consistent way to create instances of a class.
+You want to manage or control the creation process and lifecycle of objects.
+Why to Use:
+
+Encapsulation of Object Creation: Hides the complexities of creating objects.
+Loose Coupling: Reduces the dependency of the code on specific classes.
+Scalability: Easier to introduce new types of objects without changing the client code.
+
+
+Factory Method Pattern vs. Abstract Factory Pattern
+Factory Method Pattern
+The Factory Method pattern defines an interface for creating an object, but lets subclasses alter the type of objects that will be created. It is typically used for single products.
+
+Example:
+
+java
+Copy code
+// Product Interface
+interface Product {
+    void use();
+}
+
+// Concrete Product A
+class ProductA implements Product {
+    @Override
+    public void use() {
+        System.out.println("Using Product A");
+    }
+}
+
+// Concrete Product B
+class ProductB implements Product {
+    @Override
+    public void use() {
+        System.out.println("Using Product B");
+    }
+}
+
+// Creator Class
+abstract class Creator {
+    public abstract Product factoryMethod();
+
+    public void someOperation() {
+
+Here's the complete example for the Factory Method pattern, followed by the Abstract Factory pattern:
+
+java
+Copy code
+// Creator Class
+abstract class Creator {
+    public abstract Product factoryMethod();
+
+    public void someOperation() {
+        // Use the product
+        Product product = factoryMethod();
+        product.use();
+    }
+}
+
+// Concrete Creator A
+class ConcreteCreatorA extends Creator {
+    @Override
+    public Product factoryMethod() {
+        return new ProductA();
+    }
+}
+
+// Concrete Creator B
+class ConcreteCreatorB extends Creator {
+    @Override
+    public Product factoryMethod() {
+        return new ProductB();
+    }
+}
+
+// Main class to demonstrate the Factory Method pattern
+public class FactoryMethodDemo {
+    public static void main(String[] args) {
+        Creator creatorA = new ConcreteCreatorA();
+        creatorA.someOperation(); // Output: Using Product A
+
+        Creator creatorB = new ConcreteCreatorB();
+        creatorB.someOperation(); // Output: Using Product B
+    }
+}

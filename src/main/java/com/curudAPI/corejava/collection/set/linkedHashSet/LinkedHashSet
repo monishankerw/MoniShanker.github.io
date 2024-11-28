@@ -1,0 +1,22 @@
+----Linked HashSet-------
+1. extend HashSet class.
+2. Implements set, cloneable and serializable interface.
+3. Not synchronized and not Thread safe.
+4. Not allow to add duplicate.
+5. maintain insertion order.
+6. LinkedHashSet internally created LinkedHashMap.
+7. allow unique elements.
+
+
+main(){
+List<Integer>a=new AraayList<>(Arrays.asList(1,2,3,4,1,2,4,5));
+System.out.println("Elements:"+a);
+Set<Integer>set=new HashSet<>();
+set.addAll(a);
+a.clear();
+a.addAll(set);
+System.out.println("Duplicate Elements:"+a);
+
+
+
+

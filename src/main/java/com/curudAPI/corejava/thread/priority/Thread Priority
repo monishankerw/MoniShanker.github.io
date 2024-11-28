@@ -1,0 +1,11 @@
+############Thread Priority############
+
+Which Thread will be executed first is depended on priority.
+1. Normal priority(represent value 5)-default priority
+2. Max priority (represent value 10)
+3. Min priority (represent value 1)
+
+Q. How to get and set priority of a thread?
+-> By using getPriority(): we can get the priority of a Thread.
+-> By using setPriority(): We can set the priority of a thread.
+
